@@ -183,7 +183,7 @@ if __name__ == '__main__':
                         help='image files paths fed into network, single or multiple images')
     parser.add_argument('-m', '--mode', default='cpu', type=str, help='gpu or cpu mode')
     parser.add_argument('--model', type=str, help='model path')
-    parser.add_argument('-dlib-landmark', type=str, help='dlib landmark path')
+    parser.add_argument('--dlib-landmark', type=str, help='dlib landmark path')
     parser.add_argument('--show_flg', default='true', type=str2bool, help='whether show the visualization result')
     parser.add_argument('--bbox_init', default='one', type=str,
                         help='one|two: one-step bbox initialization or two-step')
