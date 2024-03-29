@@ -56,7 +56,7 @@ def main(args):
         face_detector = dlib.get_frontal_face_detector()
 
     # 3. forward
-    tri = sio.loadmat('visualize/tri.mat')['tri']
+    tri = sio.loadmat('./visualize/tri.mat')['tri']
     transform = transforms.Compose([ToTensorGjz(), NormalizeGjz(mean=127.5, std=128)])
     for img_fp in args.files:
         img_ori = cv2.imread(img_fp)
