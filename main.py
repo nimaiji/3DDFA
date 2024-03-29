@@ -56,7 +56,7 @@ def main(args):
         face_detector = dlib.get_frontal_face_detector()
 
     # 3. forward
-    tri = sio.loadmat('./visualize/tri.mat')['tri']
+    tri = sio.loadmat(args.visualizer)['tri']
     transform = transforms.Compose([ToTensorGjz(), NormalizeGjz(mean=127.5, std=128)])
     for img_fp in args.files:
         img_ori = cv2.imread(img_fp)
@@ -184,6 +184,7 @@ if __name__ == '__main__':
     parser.add_argument('-m', '--mode', default='cpu', type=str, help='gpu or cpu mode')
     parser.add_argument('--model', type=str, help='model path')
     parser.add_argument('--dlib-landmark', type=str, help='dlib landmark path')
+    parser.add_argument('--visualizer', type=str, help='visualizer path')
     parser.add_argument('--show_flg', default='true', type=str2bool, help='whether show the visualization result')
     parser.add_argument('--bbox_init', default='one', type=str,
                         help='one|two: one-step bbox initialization or two-step')
