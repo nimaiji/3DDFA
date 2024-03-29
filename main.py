@@ -32,7 +32,7 @@ STD_SIZE = 120
 
 def main(args):
     # 1. load pre-tained model
-    checkpoint_fp = 'models/phase1_wpdc_vdc.pth.tar'
+    checkpoint_fp = args.model
     arch = 'mobilenet_1'
 
     checkpoint = torch.load(checkpoint_fp, map_location=lambda storage, loc: storage)['state_dict']
@@ -50,7 +50,7 @@ def main(args):
 
     # 2. load dlib model for face detection and landmark used for face cropping
     if args.dlib_landmark:
-        dlib_landmark_model = 'models/shape_predictor_68_face_landmarks.dat'
+        dlib_landmark_model = args.dlib_landmark
         face_regressor = dlib.shape_predictor(dlib_landmark_model)
     if args.dlib_bbox:
         face_detector = dlib.get_frontal_face_detector()
@@ -182,6 +182,8 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--files', nargs='+',
                         help='image files paths fed into network, single or multiple images')
     parser.add_argument('-m', '--mode', default='cpu', type=str, help='gpu or cpu mode')
+    parser.add_argument('--model', type=str, help='model path')
+    parser.add_argument('-dlib-landmark', type=str, help='dlib landmark path')
     parser.add_argument('--show_flg', default='true', type=str2bool, help='whether show the visualization result')
     parser.add_argument('--bbox_init', default='one', type=str,
                         help='one|two: one-step bbox initialization or two-step')
