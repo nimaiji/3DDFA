@@ -48,7 +48,7 @@ def build_camera_box(rear_size=90):
     point_3d.append((front_size, front_size, front_depth))
     point_3d.append((front_size, -front_size, front_depth))
     point_3d.append((-front_size, -front_size, front_depth))
-    point_3d = np.array(point_3d, dtype=np.float).reshape(-1, 3)
+    point_3d = np.array(point_3d, dtype=np.float64).reshape(-1, 3)
 
     return point_3d
 
